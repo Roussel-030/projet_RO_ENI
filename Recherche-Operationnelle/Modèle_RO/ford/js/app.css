@@ -1,0 +1,191 @@
+
+.trace {
+    stroke: #000;
+    stroke-width: 3px;
+}
+
+.trace_selected {
+    stroke: #007bff;
+    stroke-width: 3px;
+
+}
+marker#arrow {
+    fill: #300;    
+}
+.link-label {
+    font-family: arial-black;
+    font-size: 17px;
+    font-style: bold;
+    stroke: #000;
+}
+
+button{
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px grey; 
+  color: #FEF;
+  background-image: url("Ca.png");
+  font-style: bold;
+  display: inline;
+}
+button.btn.main {
+  background-image: url("Ca5.png");
+}
+button.btn.second {
+  background-image: url("Ca2.png");
+}
+button:hover{
+  background-color: #6c757d;
+}
+#edge line{
+  stroke: #6c757d;
+}
+#dragedge line{
+  stroke: #6c757d;
+}
+p{
+  background-color: rgba(225,225,100,0.5);
+  border-radius: 10px;
+  text-align: center;
+}
+.btn {
+  display: inline-block;
+  vertical-align: top;
+}
+svg {
+  background-image: url("capture.png");
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  display: inline-block;
+  vertical-align: top;
+  border: 2px solid grey;
+  border-radius: 2px;
+}
+h3{
+  text-shadow: 1px 3px 2px grey;
+}
+body{
+  background-image: url("lines-grub-1920x1080.png");
+}
+
+#nav {
+  display: inline-block;
+  vertical-align: top;
+
+}
+ul{
+  list-style-type: none;
+}
+li{
+  margin-top: 5px;
+}
+
+svg:not(.active):not(.ctrl) {
+  cursor: crosshair;
+}
+select {
+  width: 50px;
+}
+
+circle.off {
+  stroke: #444 !important;
+  stroke-width: 2px;
+  cursor: pointer;
+  fill:#dfa;
+}
+
+text.idtab{
+ font-size: 0px;
+}
+circle.chomin {
+  stroke: #445 !important;
+  stroke-width: 2px;
+  cursor: pointer;
+  fill:rgb(255,100,50);
+  
+}
+
+line.chomin{
+  stroke: rgb(255,50,20) !important;
+  stroke-width: 3px;
+}
+circle.source {
+  stroke: #000 !important;
+  stroke-width: 2px;
+  cursor: pointer;
+  fill:#fd7e14;
+}
+circle.destination {
+  stroke: #000 !important;
+  stroke-width: 2px;
+  cursor: pointer;
+  fill:#ffc107;
+}
+
+.lamdas{
+  fill: indigo;
+  font-family: "Helvetica Neue";
+  font-size: 17px;
+  font-style: bold;
+}
+
+circle.off:hover {
+  stroke: #000 !important;
+  stroke-width: 2px;
+  cursor: pointer;
+  fill:rgb(1,170,254);
+}
+
+
+circle.selected_circle {
+  stroke: #343a40 !important;
+  stroke-width: 3px;
+  cursor: pointer;
+  fill: #007bff;
+  transform: scale(1.1);
+}
+
+text {
+  font: 14px sans-serif;
+  pointer-events: none;
+}
+
+
+text.id {
+  text-anchor: middle;
+  font-weight: bold;
+}
+
+
+table
+{
+  border-collapse: collapse;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+td, th /* Mettre une bordure sur les td ET les th */
+{
+  border: 2px solid grey;
+  width: 100px;
+  height: 30px;
+}
+
+.tabi .tabj {
+width: 100px;
+}
+.tablamda{
+width: 300px;
+}
+
+.tabvij{
+width: 200px;
+}
+.tablamdaj{
+width: 300px;
+}

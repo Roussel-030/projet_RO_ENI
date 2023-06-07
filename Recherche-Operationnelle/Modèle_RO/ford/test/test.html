@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>index</title>
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  
+  <body>
+  
+    <script src="d3.js"></script>
+    <script src="jquery.js"></script>
+    <script src="hello.js"></script>
+    <button id="action">Lancer la requête AJAX</button><br />
+<script>
+$(function() {
+$('#action').click(function() {
+$.ajax({
+type: "POST",
+url: "proverbes.php",
+data: "name=John&location=Boston",
+success: function(msg){ alert( "Data Saved: "+ msg ); }
+});
+
+});
+});
+
+</script>
+  
+  </body>
+
+
+  </html>

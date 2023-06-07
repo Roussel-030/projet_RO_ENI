@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RO</title>
+	<meta charset="utf-8"/>
+	<script type="text/javascript" src="releaseGojs/go.js"></script>
+	<script type="text/javascript" src="releaseGojs/go-debug.js"></script>
+  	<script src="configGlobal.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+			<h1>ALGORITHME BELLMAN-KALABA</h1>
+		<div class="row">
+			<div class="col-md-12" id="diagram">
+				
+			</div>
+		</div>
+		<div class="row" id="manBouton">
+			<div class="col-md-2">
+				<form>
+					<select id="select" class="form-control">
+						<option value="1">Aucun</option>
+						<option value="2">MIN</option>
+						<option value="3">MAX</option>
+					</select>
+				</form>	
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-primary" id="debFin">Debut,Fin</button>
+			</div>
+			<div class="col-md-3">
+				<div class="btn-group">
+					<button type="button" class="btn btn-success" id="dMin" onclick="minimisationDirect()">Direct Min</button>
+					<button type="button" class="btn btn-success" id="eMin" onclick="minimisationEtape()">Etape Min</button>
+				</div>
+			</div>
+			<div class="col-md-3">
+			    <div class="btn-group">
+					<button type="button" class="btn btn-danger" id="dMax" onclick="maximisationDirect()">Direct Max</button>
+					<button type="button" class="btn btn-danger" id="eMax" onclick="maximisationEtape()">Etape Max</button>
+			    </div>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-warning" id="eMin" onclick="reinitialiser()">Reset</button>
+			</div>
+			
+		</div>
+		<table id="table" align="center">
+			<caption>
+				<h2>RESULTATS</h2>
+			</caption>
+		</table>
+		<div class="row">
+			<br />
+		</div>
+	</div>
+
+	<script type="text/javascript" src="algo.js"></script>
+</body>
+</html>

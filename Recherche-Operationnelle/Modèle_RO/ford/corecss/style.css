@@ -1,0 +1,81 @@
+#block{
+	display: inline-block;
+	vertical-align: top;
+	padding: 20px;
+	margin: 5px; 
+	border: 1px solid grey;
+	border-radius: 3px;
+	background: #fbfeff;
+}
+body{
+	font-family: monospace;
+	font-size: 14px;
+}
+#one{
+	padding: 20px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px ;
+	margin-top: 50px; 
+	background: #f8f9fa;
+	display: block;
+	box-shadow: 0 1 2px grey;
+	border: 1px solid #20c997; 
+}
+
+#OK{
+	color:green; 
+	font-style:bold;
+	font-size:18px
+}
+
+#label{
+	color: #20c997;
+	font-style: bold;
+	font-family: arial black;
+	font-size:12px;
+}
+
+#chemin{
+color: #004acc ;
+font-size:15px;
+font-style: bold;
+font-family: Consolas;
+
+}
+
+#true{
+color:#dc3545;
+}
+
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}

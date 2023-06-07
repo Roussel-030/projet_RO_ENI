@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DJKISTRA</title>
+	<meta charset="utf-8"/>
+	<script type="text/javascript" src="releaseGojs/go.js"></script>
+	<script type="text/javascript" src="releaseGojs/go-debug.js"></script>
+  	<script src="configGlobal.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+			<h1>ALGORITHME DJKISTRA</h1>
+		<div class="row">
+			<div class="col-md-12" id="diagram">
+				
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-3">
+				<button type="button" class="btn btn-success" id="debFin">Sommet</button>
+				
+			</div>
+			<div class="col-md-3">
+				<div class="btn-group">
+					<button type="button" class="btn btn-success" id="dMin" onclick="minimiser()">MIN</button>
+				</div>
+
+				<div class="btn-group">
+					<button type="button" class="btn btn-danger" id="dMin" onclick="maximiser()">MAX</button>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-warning" id="eMin" onclick="reinitialiser()">Reset</button>
+			</div>
+		</div>
+
+		</div>
+		<table id="table" align="center">
+			<caption>
+				<h2>RESULTATS</h2>
+			</caption>
+		</table>
+		<div class="row">
+			<br />
+		</div>
+	</div>
+
+	<script type="text/javascript" src="algoDjikistra.js"></script>
+</body>
+</html>

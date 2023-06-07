@@ -1,0 +1,65 @@
+body {
+	background-image: url("paper.png");
+}
+
+.container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.container h1 {
+	text-align: center;
+	text-shadow: 2px 2px 4px black;
+}
+
+#diagram {
+	padding: 0px;
+    background: #272822;
+	border: 0px solid black;
+	border-radius: 2px;
+	height: 600px;
+}
+
+#manBouton {
+	position: relative;
+	bottom: -10px;
+}
+
+#resultat {
+	text-align: center;
+	font-weight: bold;
+	position: relative;
+	bottom: -20px;
+}
+
+#table {
+	padding: 10px;
+	box-shadow: 3px 3px 3px black;
+}
+
+td, th {
+	padding: 10px;
+	border: 2px solid black;
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	width: 100px;
+	overflow: auto;
+}
+th {
+	color: #ffffff;
+	/*background-color: #317c46;*/
+	background-color: rgb(18,18,18);
+}
+
+td {
+	color: black;
+	font-size: 16px;
+}
+
+caption {
+	text-shadow: 2px 2px 4px black;
+}
