@@ -3,8 +3,8 @@ const contentTableau = (i = 0, j = 0, lambdaj = 0, lambdai = 0,resultat = 0, val
     valLambdaj = (valLambdaj == "") ? "" : `λ${j} = λ${i} + V(x${i},x${j}) = ${lambdai} + ${valeurArc} = ${valLambdaj}`;
     resultat = isNaN(resultat) ? "∞" : resultat;
     let ligneTable = document.getElementById("ligneTable");
-    let tr = document.createElement("tr");
-    let td_1 = document.createElement("td"), td_2 = document.createElement("td"), td_3 = document.createElement("td"), td_4 = document.createElement("td"), td_5 = document.createElement("td");
+    let tr = document.createElement("tr"); //On crée un <tr></tr>
+    let td_1 = document.createElement("td"), td_2 = document.createElement("td"), td_3 = document.createElement("td"), td_4 = document.createElement("td"), td_5 = document.createElement("td"); //On crée des <td></td>
     td_1.appendChild(document.createTextNode(i)), td_2.appendChild(document.createTextNode(j)), td_3.appendChild(document.createTextNode(`λ${j} - λ${i} = ${lambdaj} - ${lambdai} = ${resultat}`)), td_4.appendChild(document.createTextNode(valeurArc)), td_5.appendChild(document.createTextNode(valLambdaj));
     tr.appendChild(td_1);
     tr.appendChild(td_2);
@@ -76,7 +76,7 @@ const calculeLambda = (data) => { //Calcule lambda
     
     for(let i = 0; i < data.length; i++) {
         resultat = data[i].lambda_j - data[i].lambda_i; // calcule λj - λi
-        substitutionLambdaj = data[i].lambda_j; //Avant modification
+        substitutionLambdaj = data[i].lambda_j; //Avant modification, on concerve la valeur de λj
 
         if( isNaN(resultat) || (resultat > data[i].valeurArc) ) {
             data[i].lambda_j = parseInt(data[i].lambda_i + data[i].valeurArc );
