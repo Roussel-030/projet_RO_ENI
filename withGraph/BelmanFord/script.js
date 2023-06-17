@@ -294,7 +294,7 @@ function init() {
         var links = model.linkDataArray;
         var i = 0, j = 0;
         var suivants = [];
-        var lamdaj;
+        var lamdaj, beforeSuivants, beforeNodes, beforeResult;
         while (i < nodes.length) {
             var out = undefined;
             suivants = nexts(nodes[i].key);
@@ -304,15 +304,18 @@ function init() {
                     var node = diagram.findNodeForData(suivants[j]);
                     if (Math.abs(nodes[i].key) > Math.abs(suivants[j].key)) { // si i > j
                         if ((suivants[j].lamda - nodes[i].lamda) < parseInt(arc.value)) {
+                            beforeSuivants = suivants[j].lamda;
+                            beforeNodes = nodes[i].lamda;
+                            beforeResult = suivants[j].lamda - nodes[i].lamda
                             node.data.lamda = parseInt(arc.value) + parseInt(nodes[i].lamda);
-                            lamdaj = node.data.lamda;
+                            lamdaj = "i < j "+node.data.lamda;
                             out = Math.abs(suivants[j].key);
                             appendRow({
                                 "i": Math.abs(nodes[i].key),
                                 "j": Math.abs(suivants[j].key),
-                                "lamdaRes": (suivants[j].lamda - nodes[i].lamda),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${beforeSuivants} - ${beforeNodes} = ${beforeResult}`,
                                 "arcValue": arc.value,
-                                "lamdaj": "i < j normal"+lamdaj
+                                "lamdaj": lamdaj
                             });
                             break;
                         }
@@ -320,24 +323,33 @@ function init() {
                             appendRow({
                                 "i": Math.abs(nodes[i].key),
                                 "j": Math.abs(suivants[j].key),
-                                "lamdaRes": "",
-                                "arcValue": "",
-                                "lamdaj": "tsy manao calcule"
+                                "lamdaRes": suivants[j].lamda - nodes[i].lamda,
+                                "arcValue": arc.value,
+                                "lamdaj": "i > j et λj - λi >= V(Xi,Xj)"
                             });
                         }
                     } else {
                         if (arc.value == undefined)
                             arc.value = 0;
                         if (((suivants[j].lamda - nodes[i].lamda)) < parseInt(arc.value)) {
+                            beforeSuivants = suivants[j].lamda;
+                            beforeNodes = nodes[i].lamda;
+                            beforeResult = suivants[j].lamda - nodes[i].lamda;
                             node.data.lamda = parseInt(arc.value) + parseInt(nodes[i].lamda);
-                            lamdaj = node.data.lamda;
+                            lamdaj = "i < j "+node.data.lamda;
                         }
+                        /*if (((suivants[j].lamda - nodes[i].lamda)) >= parseInt(arc.value)) {
+                            beforeSuivants = suivants[j].lamda;
+                            beforeNodes = nodes[i].lamda;
+                            beforeResult = suivants[j].lamda - nodes[i].lamda
+                            lamdaj = "i < j et λj - λi >= V(Xi,Xj)";
+                        }*/
                         appendRow({
                             "i": Math.abs(nodes[i].key),
                             "j": Math.abs(suivants[j].key),
-                            "lamdaRes": (suivants[j].lamda - nodes[i].lamda),
+                            "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${beforeSuivants} - ${beforeNodes} = ${beforeResult}`,
                             "arcValue": arc.value,
-                            "lamdaj": "tout beigne"+lamdaj
+                            "lamdaj": lamdaj
                         });
                     }
                     j++;
