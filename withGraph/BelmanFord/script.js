@@ -308,7 +308,7 @@ function init() {
                             beforeNodes = nodes[i].lamda;
                             beforeResult = suivants[j].lamda - nodes[i].lamda
                             node.data.lamda = parseInt(arc.value) + parseInt(nodes[i].lamda);
-                            lamdaj = "i < j "+node.data.lamda;
+                            lamdaj = `λ${Math.abs(suivants[j].key)}= λ${Math.abs(nodes[i].key)} + V(X${Math.abs(nodes[i].key)},X${Math.abs(suivants[j].key)})= ${beforeNodes}+${arc.value}= ${node.data.lamda}`;
                             out = Math.abs(suivants[j].key);
                             appendRow({
                                 "i": Math.abs(nodes[i].key),
@@ -323,9 +323,9 @@ function init() {
                             appendRow({
                                 "i": Math.abs(nodes[i].key),
                                 "j": Math.abs(suivants[j].key),
-                                "lamdaRes": suivants[j].lamda - nodes[i].lamda,
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${suivants[j].lamda} - ${nodes[i].lamda} = ${suivants[j].lamda - nodes[i].lamda}`,
                                 "arcValue": arc.value,
-                                "lamdaj": "i > j et λj - λi >= V(Xi,Xj)"
+                                "lamdaj": ""
                             });
                         }
                     } else {
@@ -344,7 +344,7 @@ function init() {
                             beforeNodes = nodes[i].lamda;
                             beforeResult = suivants[j].lamda - nodes[i].lamda;
                             node.data.lamda = parseInt(arc.value) + parseInt(nodes[i].lamda);
-                            lamdaj = "i < j "+node.data.lamda;
+                            lamdaj = `λ${Math.abs(suivants[j].key)}= λ${Math.abs(nodes[i].key)} + V(X${Math.abs(nodes[i].key)},X${Math.abs(suivants[j].key)})= ${beforeNodes}+${arc.value}= ${node.data.lamda}`;
                             appendRow({
                                 "i": Math.abs(nodes[i].key),
                                 "j": Math.abs(suivants[j].key),
@@ -354,13 +354,12 @@ function init() {
                             });
                         }
                         else {
-                            lamdaj = "sans calcule";
                             appendRow({
                                 "i": Math.abs(nodes[i].key),
                                 "j": Math.abs(suivants[j].key),
                                 "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${suivants[j].lamda} - ${nodes[i].lamda} = ${suivants[j].lamda - nodes[i].lamda}`,
                                 "arcValue": arc.value,
-                                "lamdaj": lamdaj
+                                "lamdaj": ""
                             });
                         }
                     }
