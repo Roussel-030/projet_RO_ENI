@@ -329,28 +329,40 @@ function init() {
                             });
                         }
                     } else {
-                        if (arc.value == undefined)
+                        if (arc.value == undefined) {
                             arc.value = 0;
-                        if (((suivants[j].lamda - nodes[i].lamda)) < parseInt(arc.value)) {
+                            appendRow({
+                                "i": Math.abs(nodes[i].key),
+                                "j": Math.abs(suivants[j].key),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${suivants[j].lamda} - ${nodes[i].lamda} = ${suivants[j].lamda - nodes[i].lamda}`,
+                                "arcValue": arc.value,
+                                "lamdaj": lamdaj
+                            }); 
+                        }
+                        else if (((suivants[j].lamda - nodes[i].lamda)) < parseInt(arc.value)) {
                             beforeSuivants = suivants[j].lamda;
                             beforeNodes = nodes[i].lamda;
                             beforeResult = suivants[j].lamda - nodes[i].lamda;
                             node.data.lamda = parseInt(arc.value) + parseInt(nodes[i].lamda);
                             lamdaj = "i < j "+node.data.lamda;
+                            appendRow({
+                                "i": Math.abs(nodes[i].key),
+                                "j": Math.abs(suivants[j].key),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${beforeSuivants} - ${beforeNodes} = ${beforeResult}`,
+                                "arcValue": arc.value,
+                                "lamdaj": lamdaj
+                            });
                         }
-                        /*if (((suivants[j].lamda - nodes[i].lamda)) >= parseInt(arc.value)) {
-                            beforeSuivants = suivants[j].lamda;
-                            beforeNodes = nodes[i].lamda;
-                            beforeResult = suivants[j].lamda - nodes[i].lamda
-                            lamdaj = "i < j et λj - λi >= V(Xi,Xj)";
-                        }*/
-                        appendRow({
-                            "i": Math.abs(nodes[i].key),
-                            "j": Math.abs(suivants[j].key),
-                            "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${beforeSuivants} - ${beforeNodes} = ${beforeResult}`,
-                            "arcValue": arc.value,
-                            "lamdaj": lamdaj
-                        });
+                        else {
+                            lamdaj = "sans calcule";
+                            appendRow({
+                                "i": Math.abs(nodes[i].key),
+                                "j": Math.abs(suivants[j].key),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${suivants[j].lamda} - ${nodes[i].lamda} = ${suivants[j].lamda - nodes[i].lamda}`,
+                                "arcValue": arc.value,
+                                "lamdaj": lamdaj
+                            });
+                        }
                     }
                     j++;
                 } else {
