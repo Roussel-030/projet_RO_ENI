@@ -381,46 +381,85 @@ function init() {
         var model = diagram.model;
         var nodes = model.nodeDataArray;
         var links = model.linkDataArray;
-        var i = 0;
+        var i = 0, j = 0;
         var suivants = [];
-        var lamdaj;
+        var lamdaj, beforeSuivants, beforeNodes, beforeResult;
         while (i < nodes.length) {
+            var out = undefined;
             suivants = nexts(nodes[i].key);
-            for (var j = 0; j < suivants.length; j++) {
-                var lamdaRes = undefined;
-                var vij = parseInt(getArc(nodes[i].key, suivants[j].key).value);
-                var node = diagram.findNodeForData(suivants[j]);
-                if (Math.abs(nodes[i].key) < Math.abs(suivants[j].key)) {                     // Vxi,xj
-                    if (!isFinite(suivants[j].lamda)) {
-                        node.data.lamda = parseInt(vij + nodes[i].lamda);
+            while (j < suivants.length) {
+                var arc = getArc(nodes[i].key, suivants[j].key);
+                if (arc.value != null || arc.value != undefined || arc.value != 0) {
+                    var node = diagram.findNodeForData(suivants[j]);
+                    if (Math.abs(nodes[i].key) > Math.abs(suivants[j].key)) { // si i > j
+                        if ((suivants[j].lamda - nodes[i].lamda) > parseInt(arc.value)) {
+                            beforeSuivants = isFinite(suivants[j].lamda)? suivants[j].lamda: "∞";
+                            beforeNodes = nodes[i].lamda;
+                            beforeResult = isFinite(suivants[j].lamda)? suivants[j].lamda - nodes[i].lamda : "∞";
+                            node.data.lamda = parseInt(arc.value) + parseInt(nodes[i].lamda);
+                            lamdaj = `λ${Math.abs(suivants[j].key)}= λ${Math.abs(nodes[i].key)} + V(X${Math.abs(nodes[i].key)},X${Math.abs(suivants[j].key)})= ${beforeNodes}+${arc.value}= ${node.data.lamda}`;
+                            out = Math.abs(suivants[j].key);
+                            appendRow({
+                                "i": Math.abs(nodes[i].key),
+                                "j": Math.abs(suivants[j].key),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${beforeSuivants} - ${beforeNodes} = ${beforeResult}`,
+                                "arcValue": arc.value,
+                                "lamdaj": lamdaj
+                            });
+                            break;
+                        }
+                        else {
+                            appendRow({
+                                "i": Math.abs(nodes[i].key),
+                                "j": Math.abs(suivants[j].key),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${suivants[j].lamda} - ${nodes[i].lamda} = ${suivants[j].lamda - nodes[i].lamda}`,
+                                "arcValue": arc.value,
+                                "lamdaj": ""
+                            });
+                        }
                     } else {
-                        lamdaRes = suivants[j].lamda - nodes[i].lamda; // lamdaj - lamdai
-                        if (lamdaRes > vij) {
-                            node.data.lamda = parseInt(vij + nodes[i].lamda);
+                        if (arc.value == undefined) {
+                            arc.value = 0;
+                            appendRow({
+                                "i": Math.abs(nodes[i].key),
+                                "j": Math.abs(suivants[j].key),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${suivants[j].lamda} - ${nodes[i].lamda} = ${suivants[j].lamda - nodes[i].lamda}`,
+                                "arcValue": arc.value,
+                                "lamdaj": lamdaj
+                            }); 
+                        }
+                        else if (((suivants[j].lamda - nodes[i].lamda)) > parseInt(arc.value)) {
+                            beforeSuivants = isFinite(suivants[j].lamda)? suivants[j].lamda: "∞";
+                            beforeNodes = nodes[i].lamda;
+                            beforeResult = isFinite(suivants[j].lamda)? suivants[j].lamda - nodes[i].lamda : "∞";
+                            node.data.lamda = parseInt(arc.value) + parseInt(nodes[i].lamda);
+                            lamdaj = `λ${Math.abs(suivants[j].key)}= λ${Math.abs(nodes[i].key)} + V(X${Math.abs(nodes[i].key)},X${Math.abs(suivants[j].key)})= ${beforeNodes}+${arc.value}= ${node.data.lamda}`;
+                            appendRow({
+                                "i": Math.abs(nodes[i].key),
+                                "j": Math.abs(suivants[j].key),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${beforeSuivants} - ${beforeNodes} = ${beforeResult}`,
+                                "arcValue": arc.value,
+                                "lamdaj": lamdaj
+                            });
+                        }
+                        else {
+                            appendRow({
+                                "i": Math.abs(nodes[i].key),
+                                "j": Math.abs(suivants[j].key),
+                                "lamdaRes": `λ${Math.abs(suivants[j].key)} - λ${Math.abs(nodes[i].key)} = ${suivants[j].lamda} - ${nodes[i].lamda} = ${suivants[j].lamda - nodes[i].lamda}`,
+                                "arcValue": arc.value,
+                                "lamdaj": ""
+                            });
                         }
                     }
-                } else { // pas de === car cela devra être gérée par l'application elle-même
-                    if (!isFinite(suivants[j].lamda)) {
-                        node.data.lamda = parseInt(vij + nodes[i].lamda);
-                    } else {
-                        lamdaRes = suivants[j].lamda - nodes[i].lamda; // lamdaj - lamdai
-                        if (lamdaRes > vij) {
-                            node.data.lamda = parseInt(vij + nodes[i].lamda);
-                            i = Math.abs(suivants[j].key) - 1;
-                            j = 0;
-                        }
-                    }
+                    j++;
+                } else {
+                    return;
                 }
-                lamdaj = node.data.lamda;
-                appendRow({
-                    "i": Math.abs(nodes[i].key),
-                    "j": Math.abs(suivants[j].key),
-                    "lamdaRes": (suivants[j].lamda - nodes[i].lamda),
-                    "arcValue": vij,
-                    "lamdaj": lamdaj
-                });
             }
-            i++;
+            lamdaj = "";
+            out ? i = out - 1 : i++;
+            j = 0;
         }
         cheminOptimal();
     }
