@@ -289,19 +289,19 @@ function init() {
         viderChemin();
         changeType('Max');
         removeDoublons();
-        var model = diagram.model;
-        var nodes = model.nodeDataArray;
-        var links = model.linkDataArray;
-        var i = 0, j = 0;
-        var suivants = [];
-        var lamdaj, beforeSuivants, beforeNodes, beforeResult;
+        let model = diagram.model;
+        let nodes = model.nodeDataArray;
+        let links = model.linkDataArray;
+        let i = 0, j = 0;
+        let suivants = [];
+        let lamdaj, out, arc, node, beforeSuivants, beforeNodes, beforeResult;
         while (i < nodes.length) {
-            var out = undefined;
+            out = undefined;
             suivants = nexts(nodes[i].key);
             while (j < suivants.length) {
-                var arc = getArc(nodes[i].key, suivants[j].key);
+                arc = getArc(nodes[i].key, suivants[j].key);
                 if (arc.value != null || arc.value != undefined || arc.value != 0) {
-                    var node = diagram.findNodeForData(suivants[j]);
+                    node = diagram.findNodeForData(suivants[j]);
                     if (Math.abs(nodes[i].key) > Math.abs(suivants[j].key)) { // si i > j
                         if ((suivants[j].lamda - nodes[i].lamda) < parseInt(arc.value)) {
                             beforeSuivants = suivants[j].lamda;
@@ -378,19 +378,19 @@ function init() {
     function minimisation() {
         viderChemin();
         changeType('Min');
-        var model = diagram.model;
-        var nodes = model.nodeDataArray;
-        var links = model.linkDataArray;
-        var i = 0, j = 0;
-        var suivants = [];
-        var lamdaj, beforeSuivants, beforeNodes, beforeResult;
+        let model = diagram.model;
+        let nodes = model.nodeDataArray;
+        let links = model.linkDataArray;
+        let i = 0, j = 0;
+        let suivants = [];
+        let lamdaj, out, arc, node, beforeSuivants, beforeNodes, beforeResult;
         while (i < nodes.length) {
-            var out = undefined;
+            out = undefined;
             suivants = nexts(nodes[i].key);
             while (j < suivants.length) {
-                var arc = getArc(nodes[i].key, suivants[j].key);
+                arc = getArc(nodes[i].key, suivants[j].key);
                 if (arc.value != null || arc.value != undefined || arc.value != 0) {
-                    var node = diagram.findNodeForData(suivants[j]);
+                    node = diagram.findNodeForData(suivants[j]);
                     if (Math.abs(nodes[i].key) > Math.abs(suivants[j].key)) { // si i > j
                         if ((suivants[j].lamda - nodes[i].lamda) > parseInt(arc.value)) {
                             beforeSuivants = isFinite(suivants[j].lamda)? suivants[j].lamda: "∞";
